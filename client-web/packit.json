@@ -1,0 +1,10 @@
+{
+	"compile": {
+		"css": {
+			"app.css": "app/app.css"
+		},
+		"js": {
+
+		}
+	}
+}
