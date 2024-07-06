@@ -4,7 +4,7 @@ import "flag"
 
 func main() {
 	// Command Arguments
-	disableWebServer := flag.Bool("disableWebServer", false, "(Optional, Boolean) Flag to disable the govie client-web server")
+	disableWebServer := flag.Bool("disableWebServer", false, "(Optional, Boolean) Flag to disable the govie web server")
 	disableApiServer := flag.Bool("disableApiServer", false, "(Optional, Boolean) Flag to disable the govie api server")
 	disableImageServer := flag.Bool("disableImageServer", false, "(Optional, Boolean) Flag to disable the govie image server")
 	flag.Parse()
