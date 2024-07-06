@@ -4,6 +4,7 @@ import (
 	"govie.io/govie-server/api"
 	web "govie.io/govie-server/client"
 	"govie.io/govie-server/image"
+	"govie.io/govie-server/web"
 )
 
 type Govie struct {

@@ -1,0 +1,22 @@
+{{ define "content" }}
+    <form class="Form" method="post" action="/login">
+        <header class="Form-Header">
+            <h1>Login</h1>
+            <p>This is some sample content.</p>
+        </header>
+
+        <div class="Form-Field">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username">
+        </div>
+
+        <div class="Form-Field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
+        </div>
+
+        <div class="Form-Field action">
+            <button type="submit" class="Button"><b class="Button-Text">Login</b></button>
+        </div>
+    </form>
+{{ end }}
