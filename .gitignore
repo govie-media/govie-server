@@ -4,3 +4,6 @@ _old/
 
 govie-server
 settings.json
+
+
+webroot/assets/
