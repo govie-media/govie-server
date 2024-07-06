@@ -2,7 +2,7 @@ package main
 
 import (
 	"govie.io/govie-server/api"
-	web "govie.io/govie-server/client"
+	"govie.io/govie-server/core"
 	"govie.io/govie-server/image"
 	"govie.io/govie-server/web"
 )
@@ -15,11 +15,16 @@ type Govie struct {
 	ApiServer   *api.Server
 	ImageServer *image.Server
 
+	// Settings
+	Settings core.GovieSettings
+
 	Tasks string
 }
 
 func (g *Govie) Init(disableWebServer, disableApiServer, disableImageServer bool) {
 	g.Version = "0.0.1"
+
+	// Read settings
 
 	// Start Web Server
 	if !disableWebServer {
