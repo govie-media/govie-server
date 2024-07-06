@@ -1,9 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Page</title>
+    <meta charset="utf-8">
+    <title>{{block "page.title" .}}Govie Media Server{{end}}</title>
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width,Downlink,ECT">
+
+    {{/* Fonts */}}
+    <link rel="preload" href="/assets/fonts/branding-semibold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="/assets/fonts/branding-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="/assets/fonts/icons.woff2?@css.cachebuster@" as="font" type="font/woff2" crossorigin="anonymous">
+
+    {{/* CSS */}}
+    <link rel="preload" href="/assets/css/app.css?@css.cachebuster@" as="style">
+    <link rel="stylesheet" href="/assets/css/app.css?@css.cachebuster@">
 </head>
-<body>
-{{template "content" .}}
+<body class="Page">
+{{block "page.content" .}}{{end}}
 </body>
 </html>

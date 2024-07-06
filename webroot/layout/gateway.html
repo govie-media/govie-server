@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Govie Login</title>
+    <title>{{block "page.title" .}}{{end}}</title>
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width,Downlink,ECT">
 
     {{/* Fonts */}}
     <link rel="preload" href="/assets/fonts/branding-semibold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
@@ -14,6 +16,6 @@
     <link rel="stylesheet" href="/assets/css/gateway.css?@css.cachebuster@">
 </head>
 <body class="Page">
-{{template "content" .}}
+{{block "page.content" .}}{{end}}
 </body>
 </html>
