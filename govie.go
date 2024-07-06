@@ -6,6 +6,7 @@ import (
 	"govie.io/govie-server/core"
 	"govie.io/govie-server/image"
 	"govie.io/govie-server/web"
+	"io/fs"
 )
 
 type Govie struct {
@@ -33,8 +34,12 @@ func (g *Govie) Init(disableWebServer, disableApiServer, disableImageServer bool
 	// Start Web Server
 	if !disableWebServer {
 		go func() {
+			// Get assets within the webroot
+			files, _ := fs.Sub(staticWebFiles, "webroot")
+
+			// Start Server
 			g.WebServer = &web.Server{}
-			g.WebServer.Init(staticWebFiles)
+			g.WebServer.Init(files)
 		}()
 	}
 
