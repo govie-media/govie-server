@@ -4,7 +4,7 @@ import (
 	"net/http"
 )
 
-func AuthMiddleware(next http.HandlerFunc, redirect string) http.HandlerFunc {
+func HttpAuth(next http.HandlerFunc, redirect string) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// Check if the request has an Authorization header
 		if r.Header.Get("Authorization") == "" {
