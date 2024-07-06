@@ -1,9 +1,11 @@
 package web
 
 import (
+	"embed"
 	"fmt"
 	"govie.io/govie-server/core"
 	"html/template"
+	"io/fs"
 	"net/http"
 )
 
@@ -13,12 +15,14 @@ type Server struct {
 	Settings   *core.Settings
 }
 
-func (s *Server) Init() {
+func (s *Server) Init(staticFiles embed.FS) {
 	s.Settings = &core.Settings{}
 	s.Settings.Webroot = "./webroot"
 
+	files, _ := fs.Sub(staticFiles, "webroot")
+
 	s.Router = http.NewServeMux()
-	s.Router.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir(s.Settings.Webroot+"/assets"))))
+	s.Router.Handle("/assets/", http.FileServerFS(files))
 	s.Router.HandleFunc("/login", s.LoginHandler)
 	s.Router.HandleFunc("GET /search", core.HttpAuth(s.SearchHandler, "/login"))
 	s.Router.HandleFunc("GET /{$}", core.HttpAuth(s.HomeHandler, "/login"))
@@ -31,7 +35,6 @@ func (s *Server) Init() {
 
 	// launch server
 	fmt.Println("Web Server : Start : ", s.HTTPServer.ListenAndServe())
-
 }
 
 func (s *Server) Render(w http.ResponseWriter, view, layout string, data interface{}) {

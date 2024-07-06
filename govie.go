@@ -1,6 +1,7 @@
 package main
 
 import (
+	"embed"
 	"govie.io/govie-server/api"
 	"govie.io/govie-server/core"
 	"govie.io/govie-server/image"
@@ -21,6 +22,9 @@ type Govie struct {
 	Tasks string
 }
 
+//go:embed webroot/assets/* webroot/layout/* webroot/view/*
+var staticWebFiles embed.FS
+
 func (g *Govie) Init(disableWebServer, disableApiServer, disableImageServer bool) {
 	g.Version = "0.0.1"
 
@@ -30,7 +34,7 @@ func (g *Govie) Init(disableWebServer, disableApiServer, disableImageServer bool
 	if !disableWebServer {
 		go func() {
 			g.WebServer = &web.Server{}
-			g.WebServer.Init()
+			g.WebServer.Init(staticWebFiles)
 		}()
 	}
 
