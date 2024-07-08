@@ -56,6 +56,16 @@ func (s *Server) HomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) LoginHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodPost {
+		token, err := core.ParseAuthRequest(r)
+
+		if err != nil {
+			println(err.Error())
+		}
+
+		println(token)
+	}
+
 	s.Render(w, "/account/login", "gateway", nil)
 }
 

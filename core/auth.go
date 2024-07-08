@@ -4,6 +4,31 @@ import (
 	"net/http"
 )
 
+type AuthUser struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type AuthToken struct {
+	Username string `json:"username"`
+	jwt.Claims
+}
+
+func ParseAuthRequest(r *http.Request) (*AuthToken, error) {
+
+	return nil, nil
+}
+
+func GetAuthCookie(r *http.Request) (*AuthToken, error) {
+
+	return nil, nil
+}
+
+func GetAuthToken(r *http.Request) (*AuthToken, error) {
+
+	return nil, nil
+}
+
 func HttpAuth(next http.HandlerFunc, redirect string) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// Check if the request has an Authorization header
