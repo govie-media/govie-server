@@ -1,0 +1,11 @@
+{
+	"compile": {
+		"css": {
+			"app.css": "app/app.css",
+			"gateway.css": "gateway/gateway.css"
+		},
+		"js": {
+
+		}
+	}
+}
