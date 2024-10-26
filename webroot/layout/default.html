@@ -15,9 +15,47 @@
     <link rel="stylesheet" href="/assets/css/app.css?@css.cachebuster@">
 </head>
 <body class="Page">
-{{block "page.content" .}}{{end}}
+    {{/* Header */}}
+    <header class="Page-Header">
+        <div class="Header-Content">
+            <a class="Header-Logo Nav-Link" href="/">Govie<small>Admin</small></a>
 
-{{/* Scripts */}}
-<script src="/assets/js/app.js?@js.cachebuster@" defer></script>
+            <nav class="Page-Nav">
+                <a class="Nav-Link dash" href="/" title="Dashboard">
+                    <span class="Icon"><svg class="Icon-Image"><use href="/assets/img/icons.svg#grid"/></svg></span>
+                </a>
+                <a class="Nav-Link lib" href="/library" title="Library">
+                    <span class="Icon"><svg class="Icon-Image"><use href="/assets/img/icons.svg#database"/></svg></span>
+                </a>
+                <a class="Nav-Link apps" href="/plugin" title="Plugins">
+                    <span class="Icon"><svg class="Icon-Image"><use href="/assets/img/icons.svg#code"/></svg></span>
+                </a>
+                <a class="Nav-Link users" href="/user" title="Users">
+                    <span class="Icon"><svg class="Icon-Image"><use href="/assets/img/icons.svg#users"/></svg></span>
+                </a>
+                <a class="Nav-Link log" href="/log" title="Logs">
+                    <span class="Icon"><svg class="Icon-Image"><use href="/assets/img/icons.svg#file-text"/></svg></span>
+                </a>
+                <a class="Nav-Link setting" href="/setting" title="Settings">
+                    <span class="Icon"><svg class="Icon-Image"><use href="/assets/img/icons.svg#settings"/></svg></span>
+                </a>
+            </nav>
+
+        </div>
+        <footer class="Header-Footer">
+            <a class="Nav-Link user" href="/account" title="Account">
+                <span class="Icon"><svg class="Icon-Image"><use href="/assets/img/icons.svg#user"/></svg></span>
+            </a>
+        </footer>
+    </header>
+
+    <main class="Page-Content">
+        {{/* Content */}}
+        {{block "page.content" .}}{{end}}
+    </main>
+
+    {{/* Scripts */}}
+    <script src="/assets/js/app.js?@js.cachebuster@" defer></script>
+    {{block "page.scripts" .}}{{end}}
 </body>
 </html>

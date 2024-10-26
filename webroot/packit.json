@@ -1,8 +1,9 @@
 {
   "compile": {
     "css": {
-      "app.css": "app/app.css",
-      "gateway.css": "gateway/gateway.css"
+      "app.css": "app/styles.css",
+      "basic.css": "basic/styles.css",
+      "gateway.css": "gateway/styles.css"
     },
     "js": {
       "app.js": "app.js"

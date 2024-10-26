@@ -2,10 +2,11 @@ package web
 
 import (
 	"fmt"
-	"govie.io/govie-server/core"
 	"html/template"
 	"io/fs"
 	"net/http"
+
+	"govie.io/govie-server/core"
 )
 
 type Server struct {
@@ -17,12 +18,32 @@ type Server struct {
 func (s *Server) Init(staticFiles fs.FS) {
 	s.Settings = &core.Settings{}
 	s.Settings.Webroot = "./webroot"
+	loginUrl := "/login"
 
 	s.Router = http.NewServeMux()
-	s.Router.Handle("/assets/", core.NeuteredFileSystemIntercept(http.FileServerFS(staticFiles)))
-	s.Router.HandleFunc("/login", s.LoginHandler)
-	s.Router.HandleFunc("GET /search", core.HttpAuth(s.SearchHandler, "/login"))
-	s.Router.HandleFunc("GET /{$}", core.HttpAuth(s.HomeHandler, "/login"))
+	// TODO: SWITCH TO EMBEDDED FILESYSTEM
+	//s.Router.Handle("/assets/", core.NeuterHttpFileServer(http.FileServerFS(staticFiles)))
+	s.Router.Handle("/assets/", http.FileServer(http.Dir(s.Settings.Webroot)))
+
+	// Account
+	s.Router.HandleFunc(loginUrl, s.LoginHandler)
+	s.Router.HandleFunc("/logout", s.LogoutHandler)
+	s.Router.HandleFunc("/account", core.ValidateCookieAuth(s.AccountHandler, loginUrl))
+
+	// Library
+	s.Router.HandleFunc("/library", core.ValidateCookieAuth(s.LibraryHandler, loginUrl))
+
+	// Users
+	s.Router.HandleFunc("/user", core.ValidateCookieAuth(s.UsersHandler, loginUrl))
+
+	// Settings
+	s.Router.HandleFunc("/plugin", core.ValidateCookieAuth(s.PluginHandler, loginUrl))
+	s.Router.HandleFunc("/log", core.ValidateCookieAuth(s.LogHandler, loginUrl))
+	s.Router.HandleFunc("/setting", core.ValidateCookieAuth(s.SettingHandler, loginUrl))
+
+	// Dashboard
+	s.Router.HandleFunc("GET /search", core.ValidateCookieAuth(s.SearchHandler, loginUrl))
+	s.Router.HandleFunc("GET /{$}", core.ValidateCookieAuth(s.DashboardHandler, loginUrl))
 
 	// create server to run on port the 9000
 	s.HTTPServer = &http.Server{
@@ -49,26 +70,4 @@ func (s *Server) Render(w http.ResponseWriter, view, layout string, data interfa
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-}
-
-func (s *Server) HomeHandler(w http.ResponseWriter, r *http.Request) {
-	s.Render(w, "/main/index", "default", nil)
-}
-
-func (s *Server) LoginHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method == http.MethodPost {
-		token, err := core.ParseAuthRequest(r)
-
-		if err != nil {
-			println(err.Error())
-		}
-
-		println(token)
-	}
-
-	s.Render(w, "/account/login", "gateway", nil)
-}
-
-func (s *Server) SearchHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Search : WEB SERVER!")
 }

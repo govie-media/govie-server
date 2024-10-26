@@ -1,0 +1,16 @@
+@import "core/1-base.css";
+
+html { background:var(--dark-bg); color:var(--dark-text); }
+input { width: 100%; border-radius:.4rem; padding:.6rem; background:rgba(255,255,255,.1); border:1px solid #333; }
+button { cursor: pointer; border-radius:.4rem; padding:.6rem 1rem; background: var(--interactive); border: 1px solid var(--interactive-border); }
+
+.Page {  padding-top: 10dvh; }
+
+.Form { display:flex; flex-direction: column; gap:1.4rem; background: var(--dark-hint); padding: 3rem 4rem; border-radius: .4rem; margin:0 auto; max-width: 560px; text-align: center; border:1px solid var(--dark-border); border-top-color: var(--dark-border-light); }
+.Form button { width: 100%;  }
+.Form label { display:none; }
+.Form-Header { margin: 0 0 3rem; display:flex; flex-direction: column; gap:.4rem; justify-content: center; align-items: center; }
+.Form-Symbol { max-width: 100px; }
+.Form-Symbol img { border-radius: 1rem; }
+.Form-Title { margin: 0; line-height:1; }
+.Form-Text { margin:0; line-height:1.2; }

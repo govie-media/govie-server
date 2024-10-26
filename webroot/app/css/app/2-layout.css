@@ -1,0 +1,28 @@
+.Page { display:grid; grid-template-columns: 80px 1fr; gap: 1.4rem; padding-right: 1.4rem; }
+.Page-Content { padding: 1rem 0; }
+.Page-Header { background:var(--dark-bg); height: 100dvh; position: sticky; top:0; display:flex; flex-direction: column; align-items: center; justify-content: space-between;  }
+.Page-Nav { display:flex; flex-direction: column; align-items: center; justify-content: center; gap:1rem; }
+.Nav-Link { display: flex; text-decoration: none; width: 60px; height: 60px; border-radius: 60px; background: var(--dark-hint); justify-content: center; align-items: center; overflow: hidden; border:0; }
+.Nav-Link .Icon-Image { color: var(--dark-text); height: 32px; width: 32px; }
+.Nav-Link:hover { background: var(--interactive-hover); }
+.Nav-Link:active { background: var(--interactive-active); }
+.Nav-Link:hover .Icon-Image, .Nav-Link:active .Icon-Image { stroke-width: 2; }
+
+.Header-Logo { background:var(--primary); color: var(--secondary); font-weight: bold; display:flex; justify-content: center; align-items: center; flex-direction: column; gap:.2rem; line-height: 1; }
+.Header-Logo smalL { font-size: .7rem; }
+.Header-Content { height: 100dvh; display:flex; flex-direction: column; align-items: center; gap:2rem; padding:1rem 0; }
+
+
+
+
+
+
+
+
+
+.Form-Field { display:flex; }
+.Field-Label { font-weight: bold; font-size: .8rem; }
+.Field-Input { flex:1; border-radius:.3rem; border:1px solid #111; padding:.4rem .6rem; }
+
+
+.Form.search { width: 100%; padding: 1rem 0; }

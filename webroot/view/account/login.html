@@ -3,22 +3,29 @@
 {{ define "page.content" }}
     <form class="Form" method="post" action="/login">
         <header class="Form-Header">
-            <h1>Login</h1>
-            <p>This is some sample content.</p>
+            <picture class="Form-Symbol"><img src="https://placehold.co/100x100" alt="Logo"></picture>
+
+            <h1 class="Form-Title">Welcome Back</h1>
+            <p class="Form-Text">Enter your details to sign in.</p>
         </header>
 
         <div class="Form-Field">
             <label for="username">Username</label>
-            <input type="text" id="username" name="username">
+            <input type="text" id="username" name="username" placeholder="Username" required>
         </div>
 
         <div class="Form-Field">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password">
+            <input type="password" id="password" name="password" placeholder="Password" required>
         </div>
 
         <div class="Form-Field action">
             <button type="submit" class="Button"><b class="Button-Text">Login</b></button>
         </div>
+
+        {{/*
+        <div class="Divider"><span class="Divider-Text">Or</span></div>
+        <a href="">Forgot Password</a>
+        */}}
     </form>
 {{ end }}

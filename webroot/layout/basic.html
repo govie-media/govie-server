@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>{{block "page.title" .}}{{end}}</title>
+    <title>{{block "page.title" .}}Govie Media Server{{end}}</title>
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width,Downlink,ECT">
 
@@ -11,11 +11,16 @@
     <link rel="preload" href="/assets/font/FiraSansCondensed-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 
     {{/* CSS */}}
-    <link rel="preload" href="/assets/css/gateway.css?@css.cachebuster@" as="style">
-    <link rel="stylesheet" href="/assets/css/gateway.css?@css.cachebuster@">
+    <link rel="preload" href="/assets/css/basic.css?@css.cachebuster@" as="style">
+    <link rel="stylesheet" href="/assets/css/basic.css?@css.cachebuster@">
 </head>
 <body class="Page">
-{{block "page.content" .}}{{end}}
-{{block "page.scripts" .}}{{end}}
+    <main class="Page-Content">
+        {{/* Content */}}
+        {{block "page.content" .}}{{end}}
+    </main>
+
+    {{/* Scripts */}}
+    {{block "page.scripts" .}}{{end}}
 </body>
 </html>
