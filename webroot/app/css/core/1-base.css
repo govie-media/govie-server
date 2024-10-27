@@ -1,6 +1,6 @@
 :root {
     --primary: #00a9fe;
-    --accent: #eb0f11;
+    --accent: #003047;
 
     --font: "Fira Sans Condensed", sans-serif;
     --dark-bg: #0f0f0f;
@@ -12,13 +12,20 @@
     --interactive: #00a9fe;
     --interactive-hover:  color-mix(in srgb, var(--interactive) 87%, white);
     --interactive-active: color-mix(in srgb, var(--interactive) 87%, black);
+    --interactive-outline: rgb(179, 229, 255, .8);
     --interactive-border: #58baff;
+    --interactive-text: #fff;
+
+    --focus: #c0392b;
+    --focus-hover:  color-mix(in srgb, var(--focus) 87%, white);
+    --focus-active: color-mix(in srgb, var(--focus) 87%, black);
+
 }
 
 
 /*--- [Fonts] ------------------------------------------------------------------------------------------------*/
 @font-face { font-family: "Fira Sans Condensed"; font-display: fallback; font-weight: 400; font-style: normal; src: url('/assets/font/FiraSansCondensed-Light.woff2') format('woff2'); }
-@font-face { font-family: "Fira Sans Condensed"; font-display: fallback; font-weight: 700; font-style: normal; src: url('/assets/font/FiraSansCondensed-Bold.woff2') format('woff2'); }
+@font-face { font-family: "Fira Sans Condensed"; font-display: fallback; font-weight: 700; font-style: normal; src: url('/assets/font/FiraSansCondensed-Black.woff2') format('woff2'); }
 
 /*--- [Reset] ------------------------------------------------------------------------------------------------*/
 blockquote,body,dd,dl,dt,fieldset,figure,h1,h2,h3,h4,h5,h6,hr,html,iframe,legend,li,ol,p,pre,textarea,ul { margin:0; padding:0; }
@@ -47,7 +54,7 @@ svg { vertical-align: middle; }
 
 /*--- [Typography] ------------------------------------------------------------------------------------------------*/
 body, button, input, select, textarea { color: var(--dark-text); font: 400 18px/1.567 var(--font);  }
-h1, h2, h3, h4, h5, h6 { margin:0 0 20px 0; color:var(--dark-text); font: 700 2.6rem/1.2345 var(--font); letter-spacing: -2px; }
+h1, h2, h3, h4, h5, h6 { margin:0 0 20px 0; color:var(--dark-text); font: 700 2.6rem/1.2345 var(--font); }
 h1, h2 { text-rendering: optimizeLegibility; }
 h2 { font-size: 2rem; }
 h3 { font-size: 1.6rem; }
@@ -62,15 +69,7 @@ a { color: var(--interactive); text-decoration: none; border-bottom: 1px solid v
 a:hover { color: var(--interactive-hover); }
 a:active { color: var(--interactive-active); }
 
-.Icon {
-    display: flex;
-    align-items: center
-}
 
-svg.Icon-Image {
-    stroke: currentColor;
-    stroke-width: .5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    fill: none
-}
+/*--- [Icons] ------------------------------------------------------------------------------------------------*/
+.Icon { display: flex; align-items: center; }
+svg.Icon-Image { stroke: currentColor; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; fill: none; }

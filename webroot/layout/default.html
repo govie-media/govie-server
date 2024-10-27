@@ -21,33 +21,39 @@
             <a class="Header-Logo Nav-Link" href="/">Govie<small>Admin</small></a>
 
             <nav class="Page-Nav">
-                <a class="Nav-Link dash" href="/" title="Dashboard">
+                <a class="Nav-Link" href="/" title="Dashboard">
                     <span class="Icon"><svg class="Icon-Image"><use href="/assets/img/icons.svg#grid"/></svg></span>
                 </a>
-                <a class="Nav-Link lib" href="/library" title="Library">
+                <a class="Nav-Link" href="/library" title="Library">
                     <span class="Icon"><svg class="Icon-Image"><use href="/assets/img/icons.svg#database"/></svg></span>
                 </a>
-                <a class="Nav-Link apps" href="/plugin" title="Plugins">
+                <a class="Nav-Link" href="/plugin" title="Plugins">
                     <span class="Icon"><svg class="Icon-Image"><use href="/assets/img/icons.svg#code"/></svg></span>
                 </a>
-                <a class="Nav-Link users" href="/user" title="Users">
+                <a class="Nav-Link" href="/user" title="Users">
                     <span class="Icon"><svg class="Icon-Image"><use href="/assets/img/icons.svg#users"/></svg></span>
                 </a>
-                <a class="Nav-Link log" href="/log" title="Logs">
+                <a class="Nav-Link" href="/log" title="Logs">
                     <span class="Icon"><svg class="Icon-Image"><use href="/assets/img/icons.svg#file-text"/></svg></span>
                 </a>
-                <a class="Nav-Link setting" href="/setting" title="Settings">
+                <a class="Nav-Link" href="/setting" title="Settings">
                     <span class="Icon"><svg class="Icon-Image"><use href="/assets/img/icons.svg#settings"/></svg></span>
                 </a>
             </nav>
-
         </div>
-        <footer class="Header-Footer">
-            <a class="Nav-Link user" href="/account" title="Account">
-                <span class="Icon"><svg class="Icon-Image"><use href="/assets/img/icons.svg#user"/></svg></span>
+        <nav class="Header-Footer">
+            <a class="Nav-Link exit" href="/logout" title="Logout">
+                <span class="Icon"><svg class="Icon-Image"><use href="/assets/img/icons.svg#log-out"/></svg></span>
             </a>
-        </footer>
+            <p>v2.0.0</p>
+        </nav>
     </header>
+
+    <nav class="Page-Nav account">
+        <a class="Nav-Link user" href="/account" title="Account">
+            <img src="https://placehold.co/52x52" alt="Account Icon">
+        </a>
+    </nav>
 
     <main class="Page-Content">
         {{/* Content */}}
