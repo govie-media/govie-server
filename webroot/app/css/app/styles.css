@@ -1,6 +1,7 @@
 @import "core/1-base.css";
 @import "app/2-layout.css";
-
+@import "app/3-components.css";
+@import "app/4-content.css";
 
 @media (max-width: 810px) {
 
