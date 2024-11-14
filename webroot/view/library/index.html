@@ -1,6 +1,7 @@
 {{ define "page.title" }}Library | Govie Media Sever{{ end }}
 
 {{ define "page.content" }}
+<header class="Content-Header">
     <h1>Library</h1>
 
     {{/* Search */}}
@@ -9,4 +10,7 @@
             <input type="search" name="search" id="search" class="Field-Input" placeholder="Search Media...">
         </div>
     </form>
+    <button class="Button"><b class="Button-Text">Add</b></button>
+    <button class="Button"><b class="Button-Text">Scan</b></button>
+</header>
 {{ end }}

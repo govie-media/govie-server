@@ -1,12 +1,16 @@
 {{ define "page.title" }}Govie Media Sever{{ end }}
 
 {{ define "page.content" }}
-    <h1>Dashboard</h1>
+    <header class="Content-Header">
+        <h1>Dashboard</h1>
 
-    {{/* Search */}}
-    <form class="Form search" method="get" action="/search">
-        <div class="Form-Field">
-            <input type="search" name="search" id="search" class="Field-Input" placeholder="Search Media...">
-        </div>
-    </form>
+        {{/* Search */}}
+        <form class="Form search" method="get" action="/search">
+            <div class="Form-Field">
+                <input type="search" name="search" id="search" class="Field-Input" placeholder="Search Media...">
+            </div>
+        </form>
+        <button class="Button"><b class="Button-Text">Scan</b></button>
+        <a class="Button" href="/setup"><b class="Button-Text">Setup</b></a>
+    </header>
 {{ end }}
