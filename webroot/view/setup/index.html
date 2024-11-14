@@ -1,0 +1,92 @@
+{{ define "page.title" }}Setup | Govie Media Sever{{ end }}
+
+{{ define "page.content" }}
+<header class="Content-Header">
+    <h1>Setup</h1>
+
+    <form id="setup-form" action="/setup" method="POST">
+        <fieldset>
+            <legend>User</legend>
+
+            <p>Add the primary administrator user.</p>
+
+            <div class="Field">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" />
+            </div>
+
+            <div class="Field">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" />
+            </div>
+
+            <div class="Field">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" name="confirm-password" id="confirm-password" />
+            </div>
+
+            <div class="Field">
+                <label for="profile-image">Profile Image</label>
+                <input type="file" name="profile-image" id="profile-image" accept="image/*" />
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Database</legend>
+
+            <div class="Field">
+                <label for="database">Name</label>
+                <input type="text" name="database" id="database" />
+            </div>
+
+            <div class="Field">
+                <label for="database-host">Host</label>
+                <input type="text" name="database-host" id="database-host" />
+            </div>
+
+            <div class="Field">
+                <label for="database-port">Port</label>
+                <input type="text" name="database-port" id="database-port" />
+            </div>
+
+            <div class="Field">
+                <label for="database-username">Username</label>
+                <input type="text" name="database-username" id="database-username" />
+            </div>
+
+            <div class="Field">
+                <label for="database-password">Password</label>
+                <input type="password" name="database-password" id="database-password" />
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Libraries</legend>
+
+            <div class="Field">
+                <label for="library-name">Name</label>
+                <input type="text" name="library-name" id="library-name" />
+            </div>
+
+            <div class="Field">
+                <label for="library-path">Path</label>
+                <input type="text" name="library-path" id="library-path" />
+            </div>
+
+            <div class="Field">
+                <label for="library-type">Type</label>
+                <select name="library-type" id="library-type">
+                    <option value="movie">Movie</option>
+                    <option value="tv">TV</option>
+                    <option value="music">Music</option>
+                    <option value="photo">Photo</option>
+                </select>
+            </div>
+        </fieldset>
+
+        <div class="Field action">
+            <button type="submit" class="Button"><b class="Button-Text">Setup</b></button>
+        </div>
+    </form>
+</header>
+{{ end }}

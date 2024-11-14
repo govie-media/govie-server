@@ -25,6 +25,9 @@ func (s *Server) Init(staticFiles fs.FS) {
 	//s.Router.Handle("/assets/", core.NeuterHttpFileServer(http.FileServerFS(staticFiles)))
 	s.Router.Handle("/assets/", http.FileServer(http.Dir(s.Settings.Webroot)))
 
+	// Setup
+	s.Router.HandleFunc("/setup", s.SetupHandler)
+
 	// Account
 	s.Router.HandleFunc(loginUrl, s.LoginHandler)
 	s.Router.HandleFunc("/logout", s.LogoutHandler)
