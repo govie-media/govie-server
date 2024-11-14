@@ -1,0 +1,7 @@
+/*--- [Forms] ------------------------------------------------------------------------------------------------*/
+.Form-Field { display:flex; }
+.Field-Label { font-weight: bold; font-size: .8rem; }
+.Field-Input { flex:1; border-radius:.3rem; border:1px solid #ddd; padding:.5rem 1rem; background:transparent; }
+
+
+.Form.search { width: 100%; }

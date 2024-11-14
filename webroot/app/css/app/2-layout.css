@@ -31,11 +31,3 @@
 .Header-Footer p { font-size:.8rem; margin:0; color: #999; }
 
 
-
-/*--- [Forms] ------------------------------------------------------------------------------------------------*/
-.Form-Field { display:flex; }
-.Field-Label { font-weight: bold; font-size: .8rem; }
-.Field-Input { flex:1; border-radius:.3rem; border:1px solid #111; padding:.4rem .6rem; }
-
-
-.Form.search { width: 100%; padding: 1rem 0; }
