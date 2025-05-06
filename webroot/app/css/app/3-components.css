@@ -1,7 +1,16 @@
+/*--- [Button] ------------------------------------------------------------------------------------------------*/
+
+/*--- [Dialog] ------------------------------------------------------------------------------------------------*/
+dialog { background:var(--dark-bg); border-radius:1rem; padding:1.4rem 2rem; margin-top: 15vh; min-width:420px; }
+dialog::backdrop { background-color: rgba(0, 0, 0, 0.8); }
+
 /*--- [Forms] ------------------------------------------------------------------------------------------------*/
-.Form-Field { display:flex; }
+.Form-Field { display:flex; flex-direction:column; gap:.4rem; margin:0 0 1.2rem; }
+.Form-Field.action { flex-direction:row; justify-content:flex-end; gap:1rem; margin:0; }
 .Field-Label { font-weight: bold; font-size: .8rem; }
 .Field-Input { flex:1; border-radius:.3rem; border:1px solid #ddd; padding:.5rem 1rem; background:transparent; }
 
 
-.Form.search { width: 100%; }
+.Form.search { width: 100%; display:flex; gap:1rem; }
+.Form.search .Form-Field { margin:0; }
+.Form.search .Form-Field:first-child { flex:1; }
