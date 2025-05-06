@@ -1,0 +1,38 @@
+{{ define "page.title" }}Edit User | Govie Media Sever{{ end }}
+
+{{ define "page.content" }}
+<header class="Content-Header">
+    <h1>Add User / Edit {User}</h1>
+</header>
+
+<div class="Content">
+    <ol class="Tab header">
+        <li class="Tab-Item">Profile</li>
+        <li class="Tab-Item">Access</li>
+        <li class="Tab-Item">Activity</li>
+    </ol>
+    <form method="post" action="/user/edit">
+        <div class="Form-Field">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" value="{{ .user.Username }}" required>
+        </div>
+        <div class="Form-Field">
+            <label for="alias">Alias</label>
+            <input type="text" id="alias" name="alias" value="{{ .user.Alias }}">
+        </div>
+        <div class="Form-Field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <ul>
+            <li>Role</li>
+            <li>Library Access</li>
+            <li>Parental Control</li>
+        </ul>
+        <div class="Form-Field action">
+            <button type="submit" class="Button"><b class="Button-Text">Save</b></button>
+        </div>
+    </form>
+</div>
+{{ end }}

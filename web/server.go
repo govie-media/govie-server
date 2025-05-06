@@ -1,25 +1,32 @@
 package web
 
 import (
+	"errors"
 	"fmt"
+	"github.com/go-playground/form/v4"
+	"github.com/go-playground/validator/v10"
 	"govie.io/govie-server/core"
 	"html/template"
 	"io/fs"
+	"log"
 	"net/http"
 	"strconv"
-	"govie.io/govie-server/core"
 )
 
 type Server struct {
 	HTTPServer *http.Server
 	Router     *http.ServeMux
 	Settings   *core.WebSettings
+	Validator  *validator.Validate
+	Decoder    *form.Decoder
 }
 
 func (s *Server) Init(staticFiles fs.FS) {
 	loginUrl := "/login"
 
 	s.Settings.Webroot = "./webroot"
+	s.Validator = validator.New()
+	s.Decoder = form.NewDecoder()
 
 	s.Router = http.NewServeMux()
 	// TODO: SWITCH TO EMBEDDED FILESYSTEM
@@ -39,6 +46,7 @@ func (s *Server) Init(staticFiles fs.FS) {
 
 	// Users
 	s.Router.HandleFunc("/user", core.ValidateCookieAuth(s.UsersHandler, loginUrl))
+	s.Router.HandleFunc("/user/{test}", core.ValidateCookieAuth(s.EditUserHandler, loginUrl))
 
 	// Settings
 	s.Router.HandleFunc("/plugin", core.ValidateCookieAuth(s.PluginHandler, loginUrl))
@@ -74,4 +82,36 @@ func (s *Server) Render(w http.ResponseWriter, view, layout string, data interfa
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+}
+
+func (s *Server) ValidateForm(r *http.Request, target interface{}) error {
+	// Ensure target is a pointer to a struct
+	//rv := reflect.ValueOf(target)
+	//if rv.Kind() != reflect.Ptr || rv.Elem().Kind() != reflect.Struct {
+	//	return errors.New("target must be a pointer to a struct")
+	//}
+
+	// Parse form data
+	if err := r.ParseForm(); err != nil {
+		return errors.New("failed to parse form")
+	}
+
+	// Decode form data into struct
+	err := s.Decoder.Decode(target, r.Form)
+	if err != nil {
+		return errors.New("form decode failed")
+	}
+
+	// Validate the form
+	err = s.Validator.Struct(target)
+	if err != nil {
+		log.Println(err.Error())
+		return errors.New("validation failed")
+	}
+
+	return nil
+}
+
+func (s *Server) Shutdown() {
+
 }
