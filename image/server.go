@@ -2,16 +2,19 @@ package image
 
 import (
 	"fmt"
+	"govie.io/govie-server/core"
 	"net/http"
+	"strconv"
 )
 
 type Server struct {
+	Settings *core.WebSettings
 }
 
 func (s *Server) Init() {
 	// create server to run on port the 9000
 	server := &http.Server{
-		Addr:    ":9002",
+		Addr:    ":" + strconv.Itoa(s.Settings.Port),
 		Handler: http.HandlerFunc(s.Handle),
 	}
 

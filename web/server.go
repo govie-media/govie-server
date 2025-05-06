@@ -2,23 +2,24 @@ package web
 
 import (
 	"fmt"
+	"govie.io/govie-server/core"
 	"html/template"
 	"io/fs"
 	"net/http"
-
+	"strconv"
 	"govie.io/govie-server/core"
 )
 
 type Server struct {
 	HTTPServer *http.Server
 	Router     *http.ServeMux
-	Settings   *core.Settings
+	Settings   *core.WebSettings
 }
 
 func (s *Server) Init(staticFiles fs.FS) {
-	s.Settings = &core.Settings{}
-	s.Settings.Webroot = "./webroot"
 	loginUrl := "/login"
+
+	s.Settings.Webroot = "./webroot"
 
 	s.Router = http.NewServeMux()
 	// TODO: SWITCH TO EMBEDDED FILESYSTEM
@@ -50,7 +51,7 @@ func (s *Server) Init(staticFiles fs.FS) {
 
 	// create server to run on port the 9000
 	s.HTTPServer = &http.Server{
-		Addr:    ":9000",
+		Addr:    ":" + strconv.Itoa(s.Settings.Port),
 		Handler: s.Router,
 	}
 
