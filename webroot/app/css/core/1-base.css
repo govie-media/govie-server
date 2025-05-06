@@ -73,3 +73,19 @@ a:active { color: var(--interactive-active); }
 /*--- [Icons] ------------------------------------------------------------------------------------------------*/
 .Icon { display: flex; align-items: center; }
 svg.Icon-Image { stroke: currentColor; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+
+
+/*--- [Buttons] ------------------------------------------------------------------------------------------------*/
+.Button { cursor: pointer; border-radius:.4rem; padding:.6rem 1rem; background: var(--interactive); border: 1px solid var(--interactive-border); color: var(--interactive-text); user-select: none; outline: none; }
+
+.Button.plain { background:0; color:var(--interactive); padding:0; border:0; }
+.Button.plain .Button-Text { font-weight: normal; }
+
+.Button.plain.alert { color: var(--focus); }
+.Button.plain.alert:hover { color: var(--focus-hover); }
+.Button.plain.alert:active { color: var(--focus-active); }
+
+
+/*--- [Forms] ------------------------------------------------------------------------------------------------*/
+input, select { width: 100%; border-radius:.4rem; padding:.4rem .6rem; background:rgba(255,255,255,.1); border:1px solid #333; }
+label { font:bold 1rem/1 var(--font); color: var(--dark-text); display:block; }
