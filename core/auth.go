@@ -22,7 +22,7 @@ type AuthClaims struct {
 	jwt.RegisteredClaims
 }
 
-func ParseAuthRequest(r *http.Request) (*string, error) {
+func ParseAuthRequest(r *http.Request) (*string, time.Time, error) {
 	var user AuthUser
 
 	// TODO: Handle Authorization Header
@@ -30,17 +30,19 @@ func ParseAuthRequest(r *http.Request) (*string, error) {
 	// Parse Form Request
 	err := r.ParseForm()
 	if err != nil {
-		return nil, err
+		return nil, time.Now(), err
 	}
 
 	// Get the username and password from the form data
 	username := r.FormValue("username")
 	password := r.FormValue("password")
+	remember := r.FormValue("rememberMe")
 
 	user = AuthUser{
 		username,
 		password,
 	}
+
 	// Parse JSON Request
 	/*
 		err := json.NewDecoder(r.Body).Decode(&user)
@@ -52,16 +54,16 @@ func ParseAuthRequest(r *http.Request) (*string, error) {
 
 	// Dummy credential check
 	if validateUser(user) {
-		token, err := generateToken(user.Username, 0)
+		token, expirationTime, err := generateToken(user.Username, 0, remember == "true")
 		if err != nil {
 			println("ERROR with TOKEN")
-			return nil, err
+			return nil, time.Now(), err
 		}
 
-		return &token, nil
+		return &token, expirationTime, nil
 	}
 
-	return nil, errors.New("Invalid Credentials")
+	return nil, time.Now(), errors.New("invalid credentials")
 }
 
 func ValidateAuth(next http.HandlerFunc, redirect string) http.HandlerFunc {
@@ -131,14 +133,16 @@ func parseToken(tokenString string) (*jwt.Token, error) {
 	return token, nil
 }
 
-func generateToken(username string, userId int) (string, error) {
+func generateToken(username string, userId int, isLongLivedToken bool) (string, time.Time, error) {
+	expirationTime := getTokenExpirationTime(isLongLivedToken)
+
 	// Create a new token
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, &AuthClaims{
 		10,
 		jwt.RegisteredClaims{
 			Issuer:    "govie",
 			Subject:   username,
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(2 * time.Hour)),
+			ExpiresAt: jwt.NewNumericDate(expirationTime),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
 			ID:        strconv.Itoa(userId),
 		},
@@ -147,10 +151,10 @@ func generateToken(username string, userId int) (string, error) {
 	// Sign the token with a secret key
 	tokenString, err := token.SignedString(tokenSalt)
 	if err != nil {
-		return "", err
+		return "", time.Now(), err
 	}
 
-	return tokenString, nil
+	return tokenString, expirationTime, nil
 }
 
 func comparePasswordHash(storedHash, newHash []byte) bool {
@@ -166,4 +170,12 @@ func comparePasswordHash(storedHash, newHash []byte) bool {
 // TODO: pull user from db
 func validateUser(user AuthUser) bool {
 	return true
+}
+
+func getTokenExpirationTime(isLongLivedToken bool) time.Time {
+	if isLongLivedToken {
+		return time.Now().Add(30 * 24 * time.Hour)
+	} else {
+		return time.Now().Add(2 * time.Hour)
+	}
 }

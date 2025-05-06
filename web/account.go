@@ -13,16 +13,24 @@ func (s *Server) AccountHandler(w http.ResponseWriter, r *http.Request) {
 
 func (s *Server) LoginHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
-		token, err := core.ParseAuthRequest(r)
+		token, expirationTime, err := core.ParseAuthRequest(r)
 		if err != nil {
+			// TODO: Handle error
 			println(err.Error())
 		} else {
+			err := r.ParseForm()
+			if err != nil {
+				// TODO: Handler error
+				println(err.Error())
+			}
+
 			http.SetCookie(w, &http.Cookie{
 				Name:     "gid",
 				Value:    *token,
-				Expires:  time.Now().Add(2 * time.Hour),
+				Expires:  expirationTime,
 				HttpOnly: true,
 			})
+
 			// Redirect to a different URL
 			http.Redirect(w, r, "/", http.StatusFound)
 			return
