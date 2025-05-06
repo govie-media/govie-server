@@ -9,8 +9,72 @@
         <div class="Form-Field">
             <input type="search" name="search" id="search" class="Field-Input" placeholder="Search Media...">
         </div>
+        <div class="Form-Field">
+            <select name="type">
+                <option>All</option>
+                <option value="movie">Movie</option>
+                <option value="tv">TV Show</option>
+                <option value="image">Pictures</option>
+                <option value="audio">Audio</option>
+            </select>
+        </div>
     </form>
-    <button class="Button"><b class="Button-Text">Add</b></button>
-    <button class="Button"><b class="Button-Text">Scan</b></button>
+    <button class="Button" type="button" onclick="document.getElementById('addLibrary').showModal()"><b class="Button-Text">Add</b></button>
+    <button class="Button" type="button"><b class="Button-Text">Scan</b></button>
 </header>
+
+<div class="Content tabs">
+    <nav class="Tab-Nav">
+        <a class="Tab-Link" href="#movies" active>Movies</a>
+        <a class="Tab-Link" href="#tv">TV Shows</a>
+        <a class="Tab-Link" href="#image">Pictures</a>
+    </nav>
+
+    <ol class="Tab-Content">
+        <li class="Tab-Item" active>
+            <h2>Movies</h2>
+        </li>
+        <li class="Tab-Item">
+            <h2>TV Shows</h2>
+        </li>
+        <li class="Tab-Item">
+            <h2>Pictures</h2>
+        </li>
+    </ol>
+</div>
+
+<dialog id="addLibrary" class="Dialog form">
+    <form class="Form" method="post" action="/library">
+        <header class="Form-Header">
+            <h1 class="Form-Title">Add a Library</h1>
+        </header>
+
+        <div class="Form-Field">
+            <label for="type">Type</label>
+            <select id="type" name="type">
+                <option value="movie">Movie</option>
+                <option value="tv">TV Show</option>
+                <option value="image">Pictures</option>
+                <option value="audio">Audio</option>
+            </select>
+        </div>
+
+        <div class="Form-Field">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" placeholder="Title" required>
+        </div>
+
+        <div class="Form-Field">
+            <label for="path">Path</label>
+            <input type="text" id="path" name="path" placeholder="Path" required>
+            
+            <button class="Button plain" type="button"><b class="Button-Text">Add Another Path</b></button>
+        </div>
+
+        <div class="Form-Field action">
+            <button type="button" class="Button plain alert" onclick="document.getElementById('addLibrary').close()"><b class="Button-Text">Cancel</b></button>
+            <button type="submit" class="Button"><b class="Button-Text">Add</b></button>
+        </div>
+    </form>
+</dialog>
 {{ end }}
