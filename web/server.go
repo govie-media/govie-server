@@ -39,19 +39,19 @@ func (s *Server) Init(staticFiles fs.FS) {
 	// Account
 	s.Router.HandleFunc(loginUrl, s.LoginHandler)
 	s.Router.HandleFunc("/logout", s.LogoutHandler)
-	s.Router.HandleFunc("/account", core.ValidateCookieAuth(s.AccountHandler, loginUrl))
+	s.Router.HandleFunc("GET /account", core.ValidateCookieAuth(s.AccountHandler, loginUrl))
 
 	// Library
-	s.Router.HandleFunc("/library", core.ValidateCookieAuth(s.LibraryHandler, loginUrl))
+	s.Router.HandleFunc("GET /library", core.ValidateCookieAuth(s.LibraryHandler, loginUrl))
 
 	// Users
-	s.Router.HandleFunc("/user", core.ValidateCookieAuth(s.UsersHandler, loginUrl))
+	s.Router.HandleFunc("GET /user", core.ValidateCookieAuth(s.UsersHandler, loginUrl))
 	s.Router.HandleFunc("/user/{test}", core.ValidateCookieAuth(s.EditUserHandler, loginUrl))
 
 	// Settings
-	s.Router.HandleFunc("/plugin", core.ValidateCookieAuth(s.PluginHandler, loginUrl))
-	s.Router.HandleFunc("/log", core.ValidateCookieAuth(s.LogHandler, loginUrl))
-	s.Router.HandleFunc("/setting", core.ValidateCookieAuth(s.SettingHandler, loginUrl))
+	s.Router.HandleFunc("GET /plugin", core.ValidateCookieAuth(s.PluginHandler, loginUrl))
+	s.Router.HandleFunc("GET /log", core.ValidateCookieAuth(s.LogHandler, loginUrl))
+	s.Router.HandleFunc("GET /setting", core.ValidateCookieAuth(s.SettingHandler, loginUrl))
 
 	// Dashboard
 	s.Router.HandleFunc("GET /search", core.ValidateCookieAuth(s.SearchHandler, loginUrl))
